@@ -1,0 +1,50 @@
+version: '3.5'
+services:
+  prometheus:
+    image: prom/prometheus:v2.36.2
+    container_name: lelekin_ks-prometheus
+    command: --web.enable-lifecycle --config.file=/etc/prometheus/prometheus.yml
+    ports:
+      - 9090:9090
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus-data:/prometheus
+    networks:
+      - lelekin_ks-netology-prometheus
+    restart: always
+  pushgateway:
+    image: prom/pushgateway:latest
+    container_name: lelekin_ks_pushgateway
+    ports:
+      - 9091:9091
+    networks:
+      - lelekin_ks-netology-prometheus
+    depends_on:
+      - prometheus
+    restart: unless-stopped
+  grafana:
+    image: grafana/grafana:latest
+    container_name: lelekin_ks_netology-grafana
+    environment:
+      GF_PATHS_CONFIG: /etc/grafana/custom.ini
+    
+    ports:
+      - 5555:3000
+    volumes:
+      - ./custom.ini:/etc/grafana/custom.ini
+      - grafana-data:/var/lib/grafana
+    networks:
+      - lelekin_ks-netology-prometheus
+    depends_on:
+      - prometheus
+    restart: unless-stopped
+volumes:
+  prometheus-data:
+  grafana-data:
+networks:
+  lelekin_ks-netology-prometheus:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.5.0.0/16
+          gateway: 10.5.0.1
