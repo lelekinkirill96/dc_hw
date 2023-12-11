@@ -26,7 +26,7 @@ networks.
 При выполнении задания используйте подсеть 10.5.0.0/16. Ваша подсеть должна называться: <ваши фамилия и инициалы>-my-netology-hw. Все приложения из последующих заданий должны находиться в этой конфигурации.
 ---
 #Решение
-
+"""
 version: '3.5'
 services:
 
@@ -39,7 +39,7 @@ networks:
       config:
         - subnet: 10.5.0.0/16
           gateway: 10.5.0.1
-
+"""
 ### Задание 3
 
 Создайте конфигурацию docker-compose для Prometheus с именем контейнера <ваши фамилия и инициалы>-netology-prometheus.
@@ -47,7 +47,7 @@ networks:
 Обеспечьте внешний доступ к порту 9090 c докер-сервера.
 
 #Решение
-
+"""
 version: '3.5'
 services:
   prometheus:
@@ -71,7 +71,7 @@ networks:
       config:
         - subnet: 10.5.0.0/16
           gateway: 10.5.0.1
-
+"""
 ### Задание 4
 
 Создайте конфигурацию docker-compose для Pushgateway с именем контейнера 
@@ -80,6 +80,7 @@ networks:
 
 
 ### Решение 4
+"""
 version: '3.5'
 services:
   prometheus:
@@ -113,7 +114,7 @@ networks:
       config:
         - subnet: 10.5.0.0/16
           gateway: 10.5.0.1
-
+"""
 
 
 
@@ -129,6 +130,7 @@ networks:
 
 
 ### Решение 5 (80 порт занят)
+"""
 version: '3.5'
 services:
   prometheus:
@@ -179,7 +181,7 @@ networks:
       config:
         - subnet: 10.5.0.0/16
           gateway: 10.5.0.1
-
+"""
 ### Задание 6
 Выполните действия.
 
