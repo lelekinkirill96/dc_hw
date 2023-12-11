@@ -130,6 +130,7 @@ networks:
 
 
 ### Решение 5 (80 порт занят)
+   
 """
 version: '3.5'
 services:
@@ -159,8 +160,7 @@ services:
     image: grafana/grafana:latest
     container_name: lelekin_ks_netology-grafana
     environment:
-      GF_PATHS_CONFIG: /etc/grafana/custom.ini
-    
+      GF_PATHS_CONFIG: /etc/grafana/custom.ini 
     ports:
       - 5555:3000
     volumes:
@@ -182,6 +182,7 @@ networks:
         - subnet: 10.5.0.0/16
           gateway: 10.5.0.1
 """
+  
 ### Задание 6
 Выполните действия.
 
