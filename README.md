@@ -6,7 +6,7 @@
 Напишите ответ в свободной форме, не больше одного абзаца текста.
 Установите Docker Compose и опишите, для чего он нужен и как может улучшить вашу жизнь.
 
-#Решение
+###Решение
 
 При создание для своего приложения более одного контейнера, не придется создавать несколько файлов Docker.
 Это уменьшает нагрузку на их обслуживание и сохраняет много времени. 
@@ -25,7 +25,7 @@ volumes;
 networks.
 При выполнении задания используйте подсеть 10.5.0.0/16. Ваша подсеть должна называться: <ваши фамилия и инициалы>-my-netology-hw. Все приложения из последующих заданий должны находиться в этой конфигурации.
 ---
-#Решение
+###Решение
 """
 version: '3.5'
 services:
@@ -46,7 +46,7 @@ networks:
 Добавьте необходимые тома с данными и конфигурацией (конфигурация лежит в репозитории в директории 6-04/prometheus).
 Обеспечьте внешний доступ к порту 9090 c докер-сервера.
 
-#Решение
+###Решение
 """
 version: '3.5'
 services:
@@ -80,41 +80,41 @@ networks:
 
 
 ### Решение 4
-"""
-version: '3.5'
-services:
-  prometheus:
-    image: prom/prometheus:v2.36.2
-    container_name: lelekin_ks-prometheus
-    command: --web.enable-lifecycle --config.file=/etc/prometheus/prometheus.yml
-    ports:
-      - 9090:9090
-    volumes:
-      - ./prometheus.yml:/etc/prometheus/prometheus.yml
-      - prometheus-data:/prometheus
-    networks:
-      - lelekin_ks-netology-prometheus
-    restart: always
-  pushgateway:
-    image: prom/pushgateway:latest
-    container_name: lelekin_ks_pushgateway
-    ports:
-      - 9091:9091
-    networks:
-      - lelekin_ks-netology-prometheus
-    depends_on:
-      - prometheus
-    restart: unless-stopped
-volumes:
-  prometheus-data:
-networks:
-  lelekin_ks-netology-prometheus:
-    driver: bridge
-    ipam:
-      config:
-        - subnet: 10.5.0.0/16
-          gateway: 10.5.0.1
-"""
+
+>version: '3.5'
+>services:
+>  prometheus:
+>    image: prom/prometheus:v2.36.2
+>    container_name: lelekin_ks-prometheus
+>    command: --web.enable-lifecycle --config.file=/etc/prometheus/prometheus.yml
+>    ports:
+>      - 9090:9090
+>    volumes:
+>      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+>      - prometheus-data:/prometheus
+>    networks:
+>      - lelekin_ks-netology-prometheus
+>    restart: always
+>  pushgateway:
+>    image: prom/pushgateway:latest
+>    container_name: lelekin_ks_pushgateway
+>    ports:
+>      - 9091:9091
+>    networks:
+>      - lelekin_ks-netology-prometheus
+>    depends_on:
+>      - prometheus
+>    restart: unless-stopped
+>volumes:
+>  prometheus-data:
+>networks:
+>  lelekin_ks-netology-prometheus:
+>    driver: bridge
+>    ipam:
+>      config:
+>        - subnet: 10.5.0.0/16
+>          gateway: 10.5.0.1
+
 
 
 
